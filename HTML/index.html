@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Designer & Printer</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- Include libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="html2canvas.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Card Designer & Printer</h1>
+    </header>
+
+    <!-- リアルタイム HTML/CSS 部品 -->
+    <!-- 横方向設定 -->
+    <div id="realtime-editor" class="left-right-layout">
+
+        <!-- 左 -->
+        <div>
+            <!-- レイアウト表示コンテナー -->
+            <div id="output-container">
+                <div class="upper">レイアウト</div>
+                <iframe id="output-iframe"></iframe>
+            </div>
+        </div>
+
+
+        <!-- 右 -->
+        <div id="realtime-editor-right">
+            <!-- 上 -->
+            <!-- 横方向設定 -->
+            <div class="left-right-layout upper">
+                <!-- プルダウンリスト・セレクター -->
+                <select id="background-selector" class="button-style" aria-label="Choose an option">
+                    <option value="resource_1">Option 1</option>
+                    <option value="resource_2">Option 2</option>
+                    <option value="resource_3">Option 3</option>
+                </select>
+
+                <!-- リセット・ボタン (Reset Button) -->
+                <button id="reset" class="button-style">リセット</button>
+            </div>
+
+            <!-- 下 -->
+            <!-- HTML / CSS エディター -->
+            <div id="editor-container">
+                <div id="tab-container">
+                    <button role="tab" aria-selected="true" aria-controls="html-panel" id="html-tab">HTML</button>
+                    <button role="tab" aria-selected="false" aria-controls="css-panel" id="css-tab">CSS</button>
+                    <div id="following-border"></div>
+                </div>
+
+                <section id="html-panel" role="tabpanel" aria-labelledby="html-tab">
+                    <textarea id="html-editor" placeholder="Enter HTML here..."></textarea>
+                </section>
+                <section id="css-panel" class="hidden" role="tabpanel" aria-labelledby="css-tab">
+                    <textarea id="css-editor" placeholder="Enter CSS here..."></textarea>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottom-div">
+        <button id="export-button" class="button-style">一括印刷</button>
+    </div>
+
+    <script src="resource/bkg1.js"></script>
+    <script src="resource/bkg2.js"></script>
+    <script src="resource/resource_1.js"></script>
+    <script src="resource/resource_2.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

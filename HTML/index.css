@@ -1,0 +1,249 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    --btn-font-size: 16px;
+    --border-radius-size: 4px;
+    --page-margin-size: 20px;
+}
+
+header {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}
+
+
+/* 横方向設定 */
+
+.left-right-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* ボタン共通スタイル */
+
+.button-style {
+    /* 背景色を透明にする */
+    background-color: transparent;
+    /* 黒い1ピクセルのボーダーを設定する */
+    border: 1px solid black;
+    /* ボーダーの角を丸める */
+    border-radius: var(--border-radius-size);
+    /* 内側に5ピクセルの上下パディングと10ピクセルの左右パディングを追加する */
+    padding: 5px 10px;
+    /* フォントサイズを設定する */
+    font-size: var(--btn-font-size);
+    /* テキストの色を黒にする */
+    color: black;
+    /* デフォルトのシャドウを削除する */
+    box-shadow: none;
+    /* マウスカーソルをポインターにする */
+    cursor: pointer;
+    /* 全てのプロパティに対する0.2秒の平滑な遷移効果 */
+    transition: all 0.2s ease;
+}
+
+
+/* ボタン共通スタイル : マウスオーバー時のスタイル */
+
+.button-style:hover {
+    /* 背景色を浅黄色にする */
+    background-color: ivory;
+    /* ボーダーの色を青に変更する */
+    border-color: skyblue;
+    /* 青い光の効果を追加する */
+    box-shadow: 0 0 3px skyblue;
+}
+
+
+/* リアルタイム HTML/CSS 部品 >>>>>>>START*/
+
+#realtime-editor {
+    margin: var(--page-margin-size);
+    /* レイアウトの幅を2.5インチに設定 */
+    --layout-width: 3.75in;
+    /* レイアウトの高さを3.5インチに設定 */
+    --layout-height: 5.25in;
+    /* 左右レイアウトの頂上部の高さ */
+    --upper-height: calc(3 * var(--btn-font-size));
+}
+
+#realtime-editor .upper {
+    height: var(--upper-height);
+    display: flex;
+    align-items: center;
+}
+
+
+/* 左 */
+
+
+/* 「レイアウト」タイトル */
+
+#realtime-editor .upper {
+    font-weight: bolder;
+}
+
+
+/* レイアウト表示コンテナー */
+
+#realtime-editor iframe {
+    /* PDFページのサイズと一致するようにデザインエリアのサイズを設定 */
+    /* 境界線を設定 */
+    border: 1px solid #ccc;
+    /* 幅を設定 */
+    width: var(--layout-width);
+    /* 高さ設定 */
+    height: var(--layout-height);
+    /* 外側の余白を削除 */
+    margin: 0;
+    /* 内側の余白を削除 */
+    padding: 0;
+    /* 幅と高さに境界線と内側の余白を含める */
+    box-sizing: border-box;
+    /* 相対位置に設定 */
+    position: relative;
+}
+
+
+/* 右 */
+
+
+/* リセット・ボタン (Reset Button) */
+
+#realtime-editor #reset {
+    color: red;
+    border-color: red;
+}
+
+
+/* リセット・ボタン (Reset Button) : マウスオーバー時のスタイル */
+
+#realtime-editor #reset:hover {
+    /* 光の効果を追加 */
+    box-shadow: 0 0 3px red;
+}
+
+
+/* エディターコンテナ*/
+
+#realtime-editor #realtime-editor-right {
+    width: 100%;
+    margin-left: 20px;
+}
+
+#realtime-editor #editor-container {
+    height: var(--layout-height);
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* tab bar */
+
+#realtime-editor #tab-container {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+}
+
+
+/* tan button 共通スタイル */
+
+#realtime-editor #tab-container button[role="tab"] {
+    font-size: var(--btn-font-size);
+    padding: 3px;
+    border-top-right-radius: var(--border-radius-size);
+    border-top-left-radius: var(--border-radius-size);
+    /* マウスカーソルをポインターにする */
+    cursor: pointer;
+}
+
+
+/* 選択されていない tab のスタイル */
+
+#realtime-editor #tab-container button[role="tab"][aria-selected="false"] {
+    background-color: whitesmoke;
+    border: 1px solid black;
+}
+
+
+/* 選択されている tab のスタイル */
+
+#realtime-editor #tab-container button[role="tab"][aria-selected="true"] {
+    background-color: white;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid transparent;
+}
+
+
+/* 後続の境界線補足 */
+
+#realtime-editor #tab-container #following-border {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+
+/* 選択されていないエディターパネル */
+
+#realtime-editor #editor-container>section[role="tabpanel"]:is(.hidden) {
+    display: none;
+}
+
+
+/* 選択されているエディターパネル */
+
+#realtime-editor #editor-container>section[role="tabpanel"]:not(.hidden) {
+    display: block;
+    /* 子要素の高さを親要素に合わせて自動調整する */
+    flex: 1;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid transparent;
+}
+
+
+/* エディターパネルの textarea */
+
+#realtime-editor #editor-container section[role="tabpanel"]:not(.hidden)>textarea {
+    /* デフォルトのスタイルをリセット */
+    all: unset;
+    width: 100%;
+    height: 100%;
+    /* ボックスサイズを設定（パディングとボーダーを幅と高さに含める） */
+    box-sizing: border-box;
+    /* テキストを元々のように表示 */
+    white-space: pre;
+    /* 内側の余白を10pxに設定（快適さを追加） */
+    padding: 10px;
+    /* フォントサイズを16pxに設定 */
+    font-size: var(--btn-font-size);
+    /* 等宽字体の指定 */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* リアルタイム HTML/CSS 部品 >>>>>>>END*/
+
+
+/* 画面下部 */
+
+#bottom-div {
+    margin: var(--page-margin-size);
+}
+
+
+/* 印刷ボタン */
+
+#bottom-div>#export-button {
+    /* 固定幅のブロックレベル要素の水平中央揃え */
+    /* display: block; */
+    /* margin: 0 auto; */
+}
