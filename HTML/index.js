@@ -4,17 +4,19 @@ var resource = resource_1;
 
 // リアルタイム HTML/CSS 部品
 class RealtimeHtmlCssEditor {
-    constructor() {
-        // 部品を取得
-        this.outputIframe = document.getElementById('output-iframe');
-        this.resetButton = document.getElementById('reset');
-        this.htmlTab = document.getElementById('html-tab');
-        this.cssTab = document.getElementById('css-tab');
-        this.htmlPanel = document.getElementById('html-panel');
-        this.cssPanel = document.getElementById('css-panel');
-        this.htmlEditor = document.getElementById('html-editor');
-        this.cssEditor = document.getElementById('css-editor');
 
+    // 部品を取得
+    static outputIframe = document.getElementById('output-iframe');
+    static resetButton = document.getElementById('reset');
+    static htmlTab = document.getElementById('html-tab');
+    static cssTab = document.getElementById('css-tab');
+    static htmlPanel = document.getElementById('html-panel');
+    static cssPanel = document.getElementById('css-panel');
+    static htmlEditor = document.getElementById('html-editor');
+    static cssEditor = document.getElementById('css-editor');
+
+    // イベント・バインディング
+    static {
         // タブの切り替え
         this.htmlTab.addEventListener('click', () => {
             this.htmlTab.setAttribute('aria-selected', 'true');
@@ -30,10 +32,10 @@ class RealtimeHtmlCssEditor {
         });
 
         // リアルタイム呼出
-        this.htmlEditor.addEventListener('input', this.updateOutput);
-        this.cssEditor.addEventListener('input', this.updateOutput);
+        this.htmlEditor.addEventListener('input', this.updateOutput.bind(this));
+        this.cssEditor.addEventListener('input', this.updateOutput.bind(this));
 
-        // リセット・ボタン (Reset Button) 
+        // リセット・ボタン (Reset Button)
         this.resetButton.addEventListener('click', () => {
             this.htmlEditor.value = '';
             this.cssEditor.value = '';
@@ -43,56 +45,60 @@ class RealtimeHtmlCssEditor {
         // テキストエリアのキーイベントリスナーを設定
         this.htmlEditor.addEventListener('keydown', this.validTabkey);
         this.cssEditor.addEventListener('keydown', this.validTabkey);
-
-        // 初期表示
-        this.refresh();
     }
 
-    validTabkey(event) {
+    // キーイベント
+    static validTabkey(event) {
         // Tabキーが押された場合
         if (event.key === 'Tab') {
             event.preventDefault(); // デフォルトのTabキーの動作をキャンセル
-            const start = this.selectionStart; // カーソルの開始位置
-            const end = this.selectionEnd; // カーソルの終了位置
+            const target = event.target;
+
+            const start = target.selectionStart; // カーソルの開始位置
+            const end = target.selectionEnd; // カーソルの終了位置
 
             // 現在のカーソル位置に制表符を挿入
-            this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+            target.value = target.value.substring(0, start) + '\t' + target.value.substring(end);
 
             // カーソル位置を更新
-            this.selectionStart = this.selectionEnd = start + 1;
+            target.selectionStart = target.selectionEnd = start + 1;
         }
     }
 
     // 表示メソッド
-    updateOutput() {
+    static updateOutput() {
         const htmlContent = this.htmlEditor.value;
         const cssContent = this.cssEditor.value;
         const doc = this.outputIframe.contentDocument || this.outputIframe.contentWindow.document;
         doc.open();
         doc.write(`
             <!DOCTYPE html>
+            <html lang="jp">
             <html>
             <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <style>
-                    body {
+                    /* ズレ防止のため、全てのディフォルト margin を無効化 */
+                    * {
                         margin: 0;
-                        padding: 0;
                     }
                     /* 背景画像とスタイルの設定 */
-                    .container {
+                    body {
+                        padding: 0;
                         background-image: url(${resource["layout"]["background"]});
                         background-size: cover; /* 背景画像がコンテナ全体に覆われるようにします */
                         background-position: center; /* 背景画像を中央に配置します */
                         background-repeat: no-repeat; /* 背景画像を繰り返さずに表示します */
                         height: 100vh; /* コンテナの高さをビューポートの高さに合わせます */
+                        overflow-wrap: break-word; /* 長い文字列を改行させる */
+                        overflow: hidden; /* スクロール無効化 */
                     }
                     ${cssContent}
                 </style>
             </head>
             <body>
-                <div class="container">
-                    ${htmlContent}
-                </div>
+                ${htmlContent}
             </body>
             </html>
         `);
@@ -100,7 +106,7 @@ class RealtimeHtmlCssEditor {
     }
 
     // リフレッシュ
-    refresh() {
+    static refresh() {
         this.htmlEditor.value = resource["layout"]["html"];
         this.cssEditor.value = resource["layout"]["css"];
         this.updateOutput();
@@ -114,7 +120,6 @@ class BackgroundSelector {
     constructor(realtimeHtmlCssEditor) {
         // 部品を取得
         this.selector = document.getElementById('background-selector');
-        this.realtimeHtmlCssEditor = realtimeHtmlCssEditor;
         // 初期設定
         this.updateResource(this.selector.value);
         // セレクトイベント
@@ -138,7 +143,7 @@ class BackgroundSelector {
                 break;
         }
         // リフレッシュ
-        this.realtimeHtmlCssEditor.refresh();
+        RealtimeHtmlCssEditor.refresh();
     }
 }
 
@@ -209,7 +214,7 @@ class PdfPrinter {
 // 画面初期化
 document.addEventListener('DOMContentLoaded', () => {
 
-    const realtimeHtmlCssEditor = new RealtimeHtmlCssEditor();
-    new BackgroundSelector(realtimeHtmlCssEditor);
+    RealtimeHtmlCssEditor.refresh();
+    new BackgroundSelector();
     new PdfPrinter(2.5, 3.5);
 });
