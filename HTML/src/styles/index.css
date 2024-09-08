@@ -25,7 +25,7 @@ header {
 
 /* ボタン共通スタイル */
 
-.button-style {
+.button-style-base {
     /* 背景色を透明にする */
     background-color: transparent;
     /* 黒い1ピクセルのボーダーを設定する */
@@ -44,18 +44,40 @@ header {
     cursor: pointer;
     /* 全てのプロパティに対する0.2秒の平滑な遷移効果 */
     transition: all 0.2s ease;
+    /* 改行しない */
+    white-space: nowrap;
 }
 
 
 /* ボタン共通スタイル : マウスオーバー時のスタイル */
 
-.button-style:hover {
+.button-style-base:hover {
     /* 背景色を浅黄色にする */
     background-color: ivory;
     /* ボーダーの色を青に変更する */
     border-color: skyblue;
     /* 青い光の効果を追加する */
     box-shadow: 0 0 3px skyblue;
+}
+
+
+/* ボタン共通スタイル 追加 : 赤色 */
+
+.button-style-red {
+    color: red;
+    border-color: red;
+}
+
+
+/* ボタン共通スタイル 追加 : 赤色 : マウスオーバー時のスタイル */
+
+.button-style-red:hover {
+    /* 背景色をピンク色にする */
+    background-color: lavenderblush;
+    /* ボーダーの色を赤色に変更する */
+    border-color: red;
+    /* 光の効果を追加 */
+    box-shadow: 0 0 3px red;
 }
 
 

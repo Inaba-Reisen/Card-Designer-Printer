@@ -1,4 +1,4 @@
-/* リアルタイム HTML/CSS 部品 */
+/* リアルタイム編集部品 */
 
 #realtime-editor {
     margin: var(--page-margin-size);
@@ -49,22 +49,6 @@
 
 
 /* 右 */
-
-
-/* リセット・ボタン (Reset Button) */
-
-#realtime-editor #reset {
-    color: red;
-    border-color: red;
-}
-
-
-/* リセット・ボタン (Reset Button) : マウスオーバー時のスタイル */
-
-#realtime-editor #reset:hover {
-    /* 光の効果を追加 */
-    box-shadow: 0 0 3px red;
-}
 
 
 /* エディターコンテナ*/
@@ -129,6 +113,13 @@
 }
 
 
+/* パネル共通スタイル */
+
+#realtime-editor section {
+    padding: 10px;
+}
+
+
 /* 選択されていないエディターパネル */
 
 #realtime-editor #editor-container>section[role="tabpanel"]:is(.hidden) {
@@ -160,10 +151,84 @@
     box-sizing: border-box;
     /* テキストを元々のように表示 */
     white-space: pre;
-    /* 内側の余白を10pxに設定（快適さを追加） */
-    padding: 10px;
     /* フォントサイズを16pxに設定 */
     font-size: var(--btn-font-size);
     /* 等宽字体の指定 */
     font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* キャッシュ管理パネル */
+
+
+/* 一覧表コンテナー */
+
+#realtime-editor #cache-panel .table-container {
+    margin-bottom: 10px;
+    max-height: calc(var(--layout-height) - var(--upper-height) - 55px);
+    /* 黒い1ピクセルのボーダーを設定する */
+    border: 1px solid black;
+    /* スクロールバーを表示する */
+    overflow: auto;
+    /* テーブルの溢れを防ぐ */
+    box-sizing: border-box;
+}
+
+
+/* 一覧表 */
+
+#realtime-editor #cache-panel table {
+    /* ボーダーを結合して見た目を整える */
+    border-collapse: collapse;
+}
+
+
+/* 第一列 */
+
+#realtime-editor #cache-panel table td:first-child {
+    /* 最初の列が残りのスペースを埋める */
+    width: 100%;
+}
+
+
+/* 一覧表の行 */
+
+
+/* 奇数行の背景色を設定 */
+
+#realtime-editor #cache-panel table tr:nth-child(odd) {
+    /* 奇数行の背景色 */
+    background-color: ghostwhite;
+}
+
+
+/* 偶数行の背景色を設定 */
+
+#realtime-editor #cache-panel table tr:nth-child(even) {
+    /* 偶数行の背景色 */
+    background-color: white;
+}
+
+
+/* 一覧表の行 : マウスオーバー時のスタイル */
+
+#realtime-editor #cache-panel table tr:hover {
+    /* 背景色を浅黄色にする */
+    background-color: lightyellow;
+    /* マウスカーソルをポインターにする */
+    cursor: pointer;
+}
+
+
+/* 一覧表内のテキスト */
+
+#realtime-editor #cache-panel table span {
+    margin: 5px;
+}
+
+
+/* 一覧表内のボタン */
+
+#realtime-editor #cache-panel table button {
+    margin: 5px;
 }

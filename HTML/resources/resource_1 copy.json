@@ -1,0 +1,24 @@
+{
+    "id": "レイアウト1",
+
+    "layout": {
+        "html": "<div id=\"title\" class=\"title\">new title</div><div id=\"content\" class=\"content\">new content</div>",
+        "css": ".title {\n    font-weight: bolder;\n}\n.content {\n}",
+        "background": "屏幕截图 2024-09-01 194341.png"
+    },
+
+    "attrs": ["title", "content"],
+
+    "content": [{
+            "title": "the タイトル　です ね",
+            "content": "the content of 1"
+        }, {
+            "title": "the 2",
+            "content": "the content of 2"
+        },
+        {
+            "title": "the 3",
+            "content": "the content of 3"
+        }
+    ]
+}

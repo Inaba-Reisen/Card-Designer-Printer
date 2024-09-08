@@ -18,7 +18,7 @@
         <h1>Card Designer & Printer</h1>
     </header>
 
-    <!-- リアルタイム HTML/CSS 部品 -->
+    <!-- リアルタイム編集部品 -->
     <!-- 横方向設定 -->
     <div id="realtime-editor" class="left-right-layout">
 
@@ -38,37 +38,50 @@
             <!-- 横方向レイアウト設定 -->
             <div class="left-right-layout upper">
                 <!-- プルダウンリスト・セレクター -->
-                <select id="background-selector" class="button-style" aria-label="Choose an option">
+                <select id="background-selector" class="button-style-base" aria-label="Choose an option">
                     <option value="resource_1">Option 1</option>
                     <option value="resource_2">Option 2</option>
                     <option value="resource_3">Option 3</option>
                 </select>
 
                 <!-- リセット・ボタン (Reset Button) -->
-                <button id="reset" class="button-style">リセット</button>
+                <button id="reset" class="button-style-base button-style-red">リセット</button>
             </div>
 
             <!-- 下 -->
-            <!-- HTML / CSS エディター -->
+            <!-- 編集エリア -->
             <div id="editor-container">
                 <div id="tab-container">
                     <button role="tab" aria-selected="true" aria-controls="html-panel" id="html-tab">HTML</button>
                     <button role="tab" aria-selected="false" aria-controls="css-panel" id="css-tab">CSS</button>
+                    <button role="tab" aria-selected="false" aria-controls="cache-panel" id="cache-tab">Cache</button>
                     <div id="following-border"></div>
                 </div>
 
+                <!-- HTML エディター -->
                 <section id="html-panel" role="tabpanel" aria-labelledby="html-tab">
                     <textarea id="html-editor" placeholder="Enter HTML here..."></textarea>
                 </section>
+                <!-- CSS エディター -->
                 <section id="css-panel" class="hidden" role="tabpanel" aria-labelledby="css-tab">
                     <textarea id="css-editor" placeholder="Enter CSS here..."></textarea>
+                </section>
+                <!-- キャッシュ管理 -->
+                <section id="cache-panel" class="hidden" role="tabpanel" aria-labelledby="cache-tab">
+                    <div class="table-container">
+                        <table id="cache-table">
+                        </table>
+                    </div>
+                    <!-- 追加インポートボタン -->
+                    <input type="file" id="file-input" accept=".json" style="display: none;" />
+                    <button id="import-btn" class="button-style-base">インポート</button>
                 </section>
             </div>
         </div>
     </div>
 
     <div id="bottom-div">
-        <button id="export-button" class="button-style">一括印刷</button>
+        <button id="export-button" class="button-style-base">一括印刷</button>
     </div>
 
     <script src="resources/bkg1.js"></script>

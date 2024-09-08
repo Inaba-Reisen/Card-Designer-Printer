@@ -4,7 +4,7 @@ var resource = resource_1;
 // プルダウンリスト・セレクター
 class BackgroundSelector {
 
-    constructor(realtimeHtmlCssEditor) {
+    constructor() {
         // 部品を取得
         this.selector = document.getElementById('background-selector');
         // 初期設定
@@ -30,14 +30,14 @@ class BackgroundSelector {
                 break;
         }
         // リフレッシュ
-        RealtimeHtmlCssEditor.refresh();
+        RealtimeEditor.refresh();
     }
 }
 
 // 画面初期化
 document.addEventListener('DOMContentLoaded', () => {
 
-    RealtimeHtmlCssEditor.refresh();
+    RealtimeEditor.refresh();
     new BackgroundSelector();
     new PdfPrinter(2.5, 3.5);
 });
