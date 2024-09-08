@@ -89,6 +89,7 @@ class RealtimeHtmlCssEditor {
                         height: 100vh; /* コンテナの高さをビューポートの高さに合わせます */
                         overflow-wrap: break-word; /* 長い文字列を改行させる */
                         overflow: hidden; /* スクロール無効化 */
+                        font-family: 'Times New Roman', 'MS Mincho'; /* 明朝体のフォントファミリーを設定します。 */
                     }
                     ${cssContent}
                 </style>

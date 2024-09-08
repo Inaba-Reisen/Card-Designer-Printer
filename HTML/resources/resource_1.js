@@ -22,7 +22,7 @@ const resource_1 = {
     "attrs": ["title", "content"],
 
     "content": [{
-            "title": "the 1",
+            "title": "the タイトル　です ね",
             "content": "the content of 1"
         }, {
             "title": "the 2",
