@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Designer & Printer</title>
-    <link rel="stylesheet" href="index.css">
+    <!-- スタイル -->
+    <link rel="stylesheet" href="src/styles/index.css">
+    <link rel="stylesheet" href="src/styles/realtime-editor.css">
     <!-- Include libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="html2canvas.min.js"></script>
+    <script src="src/lib/html2canvas.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +35,7 @@
         <!-- 右 -->
         <div id="realtime-editor-right">
             <!-- 上 -->
-            <!-- 横方向設定 -->
+            <!-- 横方向レイアウト設定 -->
             <div class="left-right-layout upper">
                 <!-- プルダウンリスト・セレクター -->
                 <select id="background-selector" class="button-style" aria-label="Choose an option">
@@ -69,11 +71,13 @@
         <button id="export-button" class="button-style">一括印刷</button>
     </div>
 
-    <script src="resource/bkg1.js"></script>
-    <script src="resource/bkg2.js"></script>
-    <script src="resource/resource_1.js"></script>
-    <script src="resource/resource_2.js"></script>
-    <script src="index.js"></script>
+    <script src="resources/bkg1.js"></script>
+    <script src="resources/bkg2.js"></script>
+    <script src="resources/resource_1.js"></script>
+    <script src="resources/resource_2.js"></script>
+    <script src="src/realtime-editor.js"></script>
+    <script src="src/pdf-printer.js"></script>
+    <script src="src/index.js"></script>
 </body>
 
 </html>
